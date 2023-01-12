@@ -140,7 +140,7 @@ After making these changes, in the admin panel on the page with a list of `Locat
 
 ## Displaying the object on the map in the edit form in the admin panel
 
-To display an object on the map in the edit/view form, you must additionally specify the field IDs in the Django form, which contain the longitude and latitude values of the object.
+To display an object on the map in the edit/view form, you must additionally specify the field IDs in the Django form, which contain the longitude and latitude values of the object. The field IDs follow the pattern `id_` plus field name.
 
 For our `Location` class, the Django admin automatically assigns the IDs` id_lon` and `id_lat` to these form fields. The following changes need to be made to the `admin.py` file.
 
@@ -151,8 +151,8 @@ from django_admin_geomap import ModelAdmin
 from .models import Location
 
 class Admin(ModelAdmin):
-    geomap_field_longitude = "id_lon"
-    geomap_field_latitude = "id_lat"
+    geomap_field_longitude = "id_lon"   # "id_" + name of the model field
+    geomap_field_latitude = "id_lat"    # "id_" + name of the model field
 
 admin.site.register(Location, Admin)
 ```
